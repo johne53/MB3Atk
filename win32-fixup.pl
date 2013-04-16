@@ -11,6 +11,14 @@ $binary_age = 207;
 $interface_age = 0;
 $gettext_package = "atk20";
 $current_minus_age = 0;
+$generic_include_folder = "F:\\+GTK-SOURCES\\gnu-windows\\include";
+$generic_library_folder = "F:\\+GTK-SOURCES\\gnu-windows\\lib";
+$generic_win32_library_folder = "F:\\+GTK-SOURCES\\gnu-windows\\lib\\win32";
+$debug32_testsuite_folder = "..\\..\\..\\..\\gnu-win32\\TestApps\\Debug\\Mixbus\\bin";
+$release32_testsuite_folder = "..\\..\\..\\..\\gnu-win32\\TestApps\\Release\\Mixbus\\bin";
+$debug32_target_folder = "C:\\Program Files\\Mixbus\\bin";
+$release32_target_folder = "E:\\Mixbus\\bin";
+$target_sxs_folder = "F:\\+GTK-SOURCES\\gnu-windows\\include\\ardourext\\sys";
 
 sub process_file
 {
@@ -32,6 +40,14 @@ sub process_file
 	    s/\@PACKAGE_STRING@/$package_string/g;
 	    s/\@PACKAGE_VERSION@/$package_version/g;
 	    s/\@VERSION@/$package_version/g;
+	    s/\@GenericIncludeFolder@/$generic_include_folder/g;
+	    s/\@GenericLibraryFolder@/$generic_library_folder/g;
+	    s/\@GenericWin32LibraryFolder@/$generic_win32_library_folder/g;
+	    s/\@Debug32TestSuiteFolder@/$debug32_testsuite_folder/g;
+	    s/\@Release32TestSuiteFolder@/$release32_testsuite_folder/g;
+	    s/\@Debug32TargetFolder@/$debug32_target_folder/g;
+	    s/\@Release32TargetFolder@/$release32_target_folder/g;
+	    s/\@TargetSxSFolder@/$target_sxs_folder/g;
 	    print OUTPUT;
 	}
 }
@@ -42,4 +58,5 @@ process_file ("atk/atkversion.h");
 my $command=join(' ',@ARGV);
 if ($command eq -buildall) {
 	process_file ("atk/atk.rc");
+	process_file ("msvc/atk.vsprops");
 }
