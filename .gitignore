@@ -39,3 +39,4 @@ Makefile.in
 /stamp-h1
 atkversion.h
 /msvc/atk.vsprops
+/win32-fixup.pl
