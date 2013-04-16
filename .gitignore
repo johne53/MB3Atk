@@ -38,3 +38,4 @@ Makefile.in
 /mkinstalldirs
 /stamp-h1
 atkversion.h
+/msvc/atk.vsprops
