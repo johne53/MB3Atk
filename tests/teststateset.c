@@ -267,7 +267,7 @@ test_state (void)
 }
 
 int
-gtk_module_init (gint argc, char* argv[])
+run_state_set_tests (gint argc, char* argv[])
 {
   gboolean b_ret;
 

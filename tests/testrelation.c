@@ -288,7 +288,7 @@ test_text_attr (void)
 }
 
 int
-gtk_module_init (gint  argc, 
+run_relation_tests (gint  argc, 
                  char* argv[])
 {
   gboolean b_ret;
