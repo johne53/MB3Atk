@@ -84,3 +84,5 @@ docs/tmpl/atkstateset.sgml
 docs/tmpl/atkstreamablecontent.sgml
 docs/tmpl/atktable.sgml
 docs/tmpl/atkvalue.sgml
+/msvc/atk.vsprops
+/win32-fixup.pl
