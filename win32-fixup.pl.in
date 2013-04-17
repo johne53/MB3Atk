@@ -1,13 +1,13 @@
 #! e:/program files/perl/bin/perl.exe
 #  version info can be found in 'configure.ac'
 
-$package_string = "\"atk 2.7.91\"";
-$package_version = "\"2.7.91\"";
-$atk_version = "2.7.91";
+$package_string = "\"atk 2.8.00\"";
+$package_version = "\"2.8.00\"";
+$atk_version = "2.8.00";
 $major = 2;
-$minor = 7;
-$micro = 91;
-$binary_age = 207;
+$minor = 8;
+$micro = 0;
+$binary_age = 208;
 $interface_age = 0;
 $gettext_package = "atk20";
 $current_minus_age = 0;
