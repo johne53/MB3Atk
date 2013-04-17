@@ -40,3 +40,5 @@ Makefile.in
 atkversion.h
 /msvc/atk.vsprops
 /win32-fixup.pl
+/msvc/atk-2.0-debug.def
+/msvc/atk-2.0-release.def
