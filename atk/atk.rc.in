@@ -23,7 +23,7 @@ VS_VERSION_INFO VERSIONINFO
       BLOCK "040904B0"
       BEGIN
 	VALUE "CompanyName", "Sun Microsystems Inc."
-	VALUE "FileDescription", "atk"
+	VALUE "FileDescription", "Libatk for Ardour and Mixbus"
 	VALUE "FileVersion", "@ATK_VERSION@.0"
 	VALUE "InternalName", "libatk-2.0-@LT_CURRENT_MINUS_AGE@"
 	VALUE "LegalCopyright", "Copyright © Sun Microsystems Inc."
