@@ -10,22 +10,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_atk", "test_atk.vcproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug 32 with Secure SCL|Win32 = Debug 32 with Secure SCL|Win32
 		Debug 32|Win32 = Debug 32|Win32
-		Release 32 with Debugging Capability|Win32 = Release 32 with Debugging Capability|Win32
 		Release 32|Win32 = Release 32|Win32
+		Release 32 with Debugging Capability|Win32 = Release 32 with Debugging Capability|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Debug 32 with Secure SCL|Win32.ActiveCfg = Debug 32 with Secure SCL|Win32
-		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Debug 32 with Secure SCL|Win32.Build.0 = Debug 32 with Secure SCL|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Debug 32|Win32.ActiveCfg = Debug 32|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Debug 32|Win32.Build.0 = Debug 32|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Release 32 with Debugging Capability|Win32.ActiveCfg = Release 32 with Debugging Capability|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Release 32 with Debugging Capability|Win32.Build.0 = Release 32 with Debugging Capability|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Release 32|Win32.ActiveCfg = Release 32|Win32
 		{75029D43-525A-4BAD-9F6B-54192900CDC6}.Release 32|Win32.Build.0 = Release 32|Win32
-		{7F8509C1-A052-42ED-A684-DC9C614953BE}.Debug 32 with Secure SCL|Win32.ActiveCfg = Debug 32 with Secure SCL|Win32
-		{7F8509C1-A052-42ED-A684-DC9C614953BE}.Debug 32 with Secure SCL|Win32.Build.0 = Debug 32 with Secure SCL|Win32
 		{7F8509C1-A052-42ED-A684-DC9C614953BE}.Debug 32|Win32.ActiveCfg = Debug 32|Win32
 		{7F8509C1-A052-42ED-A684-DC9C614953BE}.Debug 32|Win32.Build.0 = Debug 32|Win32
 		{7F8509C1-A052-42ED-A684-DC9C614953BE}.Release 32 with Debugging Capability|Win32.ActiveCfg = Release 32 with Debugging Capability|Win32
