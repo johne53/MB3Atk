@@ -111,21 +111,32 @@ typedef struct _AtkText AtkText;
 #endif
 typedef struct _AtkTextIface AtkTextIface;
 
+
 /**
  *AtkTextBoundary:
- *@ATK_TEXT_BOUNDARY_CHAR: Boundary is the boundary between characters 
+ *@ATK_TEXT_BOUNDARY_CHAR: Boundary is the boundary between characters
  * (including non-printing characters)
- *@ATK_TEXT_BOUNDARY_WORD_START: Boundary is the start (i.e. first character) of a word. 
- *@ATK_TEXT_BOUNDARY_WORD_END: Boundary is the end (i.e. last character) of a word.
+ *@ATK_TEXT_BOUNDARY_WORD_START: Boundary is the start (i.e. first character) of a word.
+ *@ATK_TEXT_BOUNDARY_WORD_END: Boundary is the end (i.e. last
+ * character) of a word. This boundary is deprecated, and should not be
+ * used.
  *@ATK_TEXT_BOUNDARY_SENTENCE_START: Boundary is the first character in a sentence.
- *@ATK_TEXT_BOUNDARY_SENTENCE_END: Boundary is the last (terminal) character in a sentence; 
- * in languages which use "sentence stop" punctuation such as English, the boundary is thus the
- * '.', '?', or similar terminal punctuation character.
- *@ATK_TEXT_BOUNDARY_LINE_START: Boundary is the initial character of the content or a 
+ *@ATK_TEXT_BOUNDARY_SENTENCE_END: Boundary is the last (terminal)
+ * character in a sentence; in languages which use "sentence stop"
+ * punctuation such as English, the boundary is thus the '.', '?', or
+ * similar terminal punctuation character. This boundary is
+ * deprecated, and should not be used.
+ *@ATK_TEXT_BOUNDARY_LINE_START: Boundary is the initial character of the content or a
  * character immediately following a newline, linefeed, or return character.
- *@ATK_TEXT_BOUNDARY_LINE_END: Boundary is the linefeed, or return character.
+ *@ATK_TEXT_BOUNDARY_LINE_END: Boundary is the linefeed, or return
+ * character. This boundary is deprecated, and should not be used.
  *
- *Text boundary types used for specifying boundaries for regions of text
+ * Text boundary types used for specifying boundaries for regions of
+ * text. Note that some boundaries are deprecated since 2.9.3., not
+ * marked explicitly due to the lack of a formal method to mark as
+ * deprecated some elements from a enum.
+ *
+ *
  **/
 typedef enum {
   ATK_TEXT_BOUNDARY_CHAR,
@@ -192,6 +203,13 @@ typedef enum {
     ATK_TEXT_CLIP_BOTH
 } AtkTextClipType;
 
+/**
+ * AtkTextIface:
+ * @get_text_after_offset: Gets specified text. This virtual function
+ *   is deprecated and it should not be overridden.
+ * @get_text_before_offset: Gets specified text. This virtual function
+ *   is deprecated and it should not be overridden.
+ */
 struct _AtkTextIface
 {
   GTypeInterface parent;
@@ -275,9 +293,6 @@ struct _AtkTextIface
                                                    AtkCoordType     coord_type,
                                                    AtkTextClipType  x_clip_type,
                                                    AtkTextClipType  y_clip_type);
- 
-
-  AtkFunction    pad4;
 };
 
 GType            atk_text_get_type (void);
@@ -295,6 +310,7 @@ gchar*        atk_text_get_text                           (AtkText          *tex
                                                            gint             end_offset);
 gunichar      atk_text_get_character_at_offset            (AtkText          *text,
                                                            gint             offset);
+G_DEPRECATED_FOR(atk_text_get_text_at_offset)
 gchar*        atk_text_get_text_after_offset              (AtkText          *text,
                                                            gint             offset,
                                                            AtkTextBoundary  boundary_type,
@@ -305,6 +321,7 @@ gchar*        atk_text_get_text_at_offset                 (AtkText          *tex
                                                            AtkTextBoundary  boundary_type,
 							   gint             *start_offset,
 							   gint             *end_offset);
+G_DEPRECATED_FOR(atk_text_get_text_at_offset)
 gchar*        atk_text_get_text_before_offset             (AtkText          *text,
                                                            gint             offset,
                                                            AtkTextBoundary  boundary_type,
