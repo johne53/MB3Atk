@@ -73,7 +73,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="intlD.lib libgobject-2.0-0D.lib libglib-2.0-0D.lib"
+				AdditionalDependencies="intlD.lib $(DllPrefix)glib32$(DllSuffix)D.lib $(DllPrefix)gobject32$(DllSuffix)D.lib"
 				OutputFile="$(OutDir)\$(DllPrefix)$(ProjectName)$(DllSuffix)D.dll"
 				AdditionalLibraryDirectories="..\..\..\lib\win32;..\..\..\lib"
 				ModuleDefinitionFile="$(ProjectDir)\$(ProjectName)-2.0-debug.def"
@@ -168,7 +168,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="intl.lib libgobject-2.0-0.lib libglib-2.0-0.lib"
+				AdditionalDependencies="intl.lib $(DllPrefix)glib32$(DllSuffix).lib $(DllPrefix)gobject32$(DllSuffix).lib"
 				OutputFile="$(OutDir)\$(DllPrefix)$(ProjectName)$(DllSuffix).dll"
 				AdditionalLibraryDirectories="..\..\..\lib\win32;..\..\..\lib"
 				ModuleDefinitionFile="$(ProjectDir)\$(ProjectName)-2.0-release.def"
@@ -261,7 +261,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="intlRDC.lib libgobject-2.0-0RDC.lib libglib-2.0-0RDC.lib"
+				AdditionalDependencies="intlRDC.lib $(DllPrefix)glib32$(DllSuffix)RDC.lib $(DllPrefix)gobject32$(DllSuffix)RDC.lib"
 				OutputFile="$(OutDir)\$(DllPrefix)$(ProjectName)$(DllSuffix)RDC.dll"
 				AdditionalLibraryDirectories="..\..\..\lib\win32;..\..\..\lib"
 				ModuleDefinitionFile="$(ProjectDir)\$(ProjectName)-2.0-release.def"
