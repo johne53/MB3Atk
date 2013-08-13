@@ -21,6 +21,17 @@
 #include "atkmarshal.c"
 #include "config.h"
 
+/**
+ * SECTION:atkutil
+ * @Short_description: A set of ATK utility functions for event and toolkit support.
+ * @Title:AtkUtil
+ *
+ * A set of ATK utility functions which are used to support event
+ * registration of various types, and obtaining the 'root' accessible
+ * of a process and information about the current ATK implementation
+ * and toolkit version.
+ */
+
 static void atk_util_class_init (AtkUtilClass *klass);
 
 static AtkObject *previous_focus_object = NULL;
@@ -87,6 +98,11 @@ struct _FocusTracker {
  * This function should be called by an implementation of the
  * ATK interface if any specific work needs to be done to enable
  * focus tracking.
+ *
+ * Deprecated: This method is deprecated since ATK version
+ * 2.9.4. Focus tracking has been dropped as a feature to be
+ * implemented by ATK itself.
+ *
  **/
 void
 atk_focus_tracker_init (AtkEventListenerInit    init)
@@ -102,6 +118,11 @@ atk_focus_tracker_init (AtkEventListenerInit    init)
  *
  * Adds the specified function to the list of functions to be called
  * when an object receives focus.
+ *
+ * Deprecated: This method is deprecated since ATK version
+ * 2.9.4. Focus tracking has been dropped as a feature to be
+ * implemented by ATK itself. If you need focus tracking on your
+ * implementation, subscribe to the state-changed:focused signal.
  *
  * Returns: added focus tracker id, or 0 on failure.
  **/
@@ -138,6 +159,11 @@ atk_add_focus_tracker (AtkEventListener   focus_tracker)
  * atk_remove_focus_tracker:
  * @tracker_id: the id of the focus tracker to remove
  *
+ * Deprecated: This method is deprecated since ATK version
+ * 2.9.4. Focus tracking has been dropped as a feature to be
+ * implemented by ATK itself. If you need focus tracking on your
+ * implementation, subscribe to the state-changed:focused signal.
+ *
  * Removes the specified focus tracker from the list of functions
  * to be called when any object receives focus.
  **/
@@ -170,6 +196,11 @@ atk_remove_focus_tracker (guint            tracker_id)
  *
  * Cause the focus tracker functions which have been specified to be
  * executed for the object.
+ *
+ * Deprecated: This method is deprecated since ATK version
+ * 2.9.4. Focus tracking has been dropped as a feature to be
+ * implemented by ATK itself.
+ *
  **/
 void
 atk_focus_tracker_notify (AtkObject       *object)

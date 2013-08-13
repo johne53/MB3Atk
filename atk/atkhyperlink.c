@@ -17,9 +17,22 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#undef ATK_DISABLE_DEPRECATED
 #include "atkhyperlink.h"
 #include "atkintl.h"
+
+/**
+ * SECTION:atkhyperlink
+ * @Short_description: An ATK object which encapsulates a link or set
+ *  of links in a hypertext document.
+ * @Title:AtkHyperlink
+ *
+ * An ATK object which encapsulates a link or set of links (for
+ * instance in the case of client-side image maps) in a hypertext
+ * document.  It may implement the AtkAction interface.  AtkHyperlink
+ * may also be used to refer to inline embedded content, since it
+ * allows specification of a start and end offset within the host
+ * AtkHypertext object.
+ */
 
 enum
 {
@@ -98,6 +111,16 @@ atk_hyperlink_class_init (AtkHyperlinkClass *klass)
 
   klass->link_activated = NULL;
 
+  /**
+   * AtkHyperlink:selected-link:
+   *
+   * Selected link
+   *
+   * Deprecated: Since 1.8. As atk_hyperlink_is_selected_link is
+   * deprecated this property is deprecated as well. Please use
+   * ATK_STATE_SELECTED to indicate when a hyperlink within a
+   * Hypertext container is selected.
+   */
   g_object_class_install_property (gobject_class,
                                    PROP_SELECTED_LINK,
                                    g_param_spec_boolean ("selected-link",
@@ -132,6 +155,13 @@ atk_hyperlink_class_init (AtkHyperlinkClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READABLE));
+
+  /**
+   * AtkHyperlink::link-activated:
+   * @atkhyperlink: the object which received the signal.
+   *
+   * The signal link-activated is emitted when a link is activated.
+   */
   atk_hyperlink_signals[LINK_ACTIVATED] =
     g_signal_new ("link_activated",
                   G_TYPE_FROM_CLASS (klass),
@@ -163,7 +193,8 @@ atk_hyperlink_real_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_SELECTED_LINK:
-      g_value_set_boolean (value, atk_hyperlink_is_selected_link (link));
+      // This property is deprecated, also the method to get the value
+      g_value_set_boolean (value, FALSE);
       break;
     case PROP_NUMBER_ANCHORS:
       g_value_set_int (value,  atk_hyperlink_get_n_anchors (link));

@@ -267,11 +267,11 @@ test_state (void)
 }
 
 int
-run_state_set_tests (gint argc, char* argv[])
+main (gint argc, char* argv[])
 {
   gboolean b_ret;
 
-  g_print("State Set test module loaded\n");
+  g_print("Starting State Set test suite\n");
 
   b_ret = test_state_set ();
   if (b_ret)

@@ -163,8 +163,8 @@ G_BEGIN_DECLS
  **/
 typedef enum
 {
-  ATK_ROLE_INVALID = 0, 
-  ATK_ROLE_ACCEL_LABEL,
+  ATK_ROLE_INVALID = 0,
+  ATK_ROLE_ACCEL_LABEL,      /*<nick=accelerator-label>*/
   ATK_ROLE_ALERT,
   ATK_ROLE_ANIMATION,
   ATK_ROLE_ARROW,
@@ -267,8 +267,6 @@ typedef enum
   ATK_ROLE_LEVEL_BAR,
   ATK_ROLE_LAST_DEFINED
 } AtkRole;
-
-AtkRole                  atk_role_register        (const gchar *name);
 
 /**
  *AtkLayer:
@@ -374,6 +372,16 @@ struct _AtkPropertyValues
 
 typedef struct _AtkPropertyValues        AtkPropertyValues;
 
+/**
+ * AtkFunction:
+ * @user_data: custom data defined by the user
+ *
+ * An AtkFunction is a function definition used for padding which has
+ * been added to class and interface structures to allow for expansion
+ * in the future.
+ *
+ * Returns: not used
+ */
 typedef gboolean (*AtkFunction)          (gpointer user_data);
 /*
  * For most properties the old_value field of AtkPropertyValues will
@@ -386,6 +394,16 @@ typedef gboolean (*AtkFunction)          (gpointer user_data);
  * and the property change handler will be called for the object which
  * received the focus with the new_value containing an AtkState value
  * corresponding to focused.
+ */
+
+/**
+ * AtkPropertyChangeHandler:
+ * @obj: atkobject which property changes
+ * @vals: values changed
+ *
+ * An AtkPropertyChangeHandler is a function which is executed when an
+ * AtkObject's property changes value. It is specified in a call to
+ * atk_object_connect_property_change_handler().
  */
 typedef void (*AtkPropertyChangeHandler) (AtkObject* obj, AtkPropertyValues* vals);
 
@@ -402,6 +420,14 @@ struct _AtkObject
   AtkLayer layer;
 };
 
+
+/**
+ * AtkObjectClass:
+ * @focus_event: The signal handler which is executed when there is a
+ *   focus event for an object. This virtual function is deprecated
+ *   since 2.9.4 and it should not be overriden. Use
+ *   state-changed:focused signal instead.
+ */
 struct _AtkObjectClass
 {
   GObjectClass parent;
@@ -539,6 +565,13 @@ void                      (* initialize)                         (AtkObject     
 
 GType            atk_object_get_type   (void);
 
+/**
+ * AtkImplementorIface:
+ *
+ * The AtkImplementor interface is implemented by objects for which
+ * AtkObject peers may be obtained via calls to
+ * iface->(ref_accessible)(implementor);
+ */
 struct _AtkImplementorIface
 {
   GTypeInterface parent;
@@ -547,18 +580,6 @@ struct _AtkImplementorIface
 };
 GType atk_implementor_get_type (void);
 
-/*
- * This method uses the ref_accessible method in AtkImplementorIface,
- * if the object's class implements AtkImplementorIface.
- * Otherwise it returns %NULL.
- *
- * IMPORTANT:
- * Note also that because this method may return flyweight objects,
- * it increments the returned AtkObject's reference count.
- * Therefore it is the responsibility of the calling
- * program to unreference the object when no longer needed.
- * (c.f. gtk_widget_get_accessible() where this is not the case).
- */
 AtkObject*              atk_implementor_ref_accessible            (AtkImplementor *implementor);
 
 /*
@@ -573,12 +594,12 @@ AtkObject*              atk_object_ref_accessible_child           (AtkObject *ac
                                                                    gint        i);
 AtkRelationSet*         atk_object_ref_relation_set               (AtkObject *accessible);
 AtkRole                 atk_object_get_role                       (AtkObject *accessible);
-#ifndef ATK_DISABLE_DEPRECATED
+
 G_DEPRECATED_FOR(atk_component_get_layer)
 AtkLayer                atk_object_get_layer                      (AtkObject *accessible);
 G_DEPRECATED_FOR(atk_component_get_mdi_zorder)
 gint                    atk_object_get_mdi_zorder                 (AtkObject *accessible);
-#endif /* ATK_DISABLE_DEPRECATED */
+
 AtkAttributeSet*        atk_object_get_attributes                 (AtkObject *accessible);
 AtkStateSet*            atk_object_ref_state_set                  (AtkObject *accessible);
 gint                    atk_object_get_index_in_parent            (AtkObject *accessible);
@@ -615,67 +636,8 @@ gboolean              atk_object_remove_relationship           (AtkObject      *
 								AtkRelationType relationship,
 								AtkObject      *target);
 const gchar*          atk_role_get_localized_name              (AtkRole     role);
+AtkRole               atk_role_register                        (const gchar *name);
 const gchar*          atk_object_get_object_locale             (AtkObject   *accessible);
-
-/* */
-
-
-/*
- * Note: the properties which are registered with the GType
- *   property registry, for type ATK_TYPE_OBJECT, are as follows:
- *
- *   "accessible-name"
- *   "accessible-description"
- *   "accessible-parent"
- *   "accessible-role"
- *   "accessible-value"
- *   "accessible-component-layer"
- *   "accessible-component-zorder"
- *   "accessible-table-caption"
- *   "accessible-table-column-description"
- *   "accessible-table-column-header"
- *   "accessible-table-row-description"
- *   "accessible-table-row-header"
- *   "accessible-table-summary"
- *   "accessible-model"
- *
- * accessibility property change listeners should use the
- *   normal GObject property interfaces and "property-change"
- *   signal handler semantics to interpret the property change
- *   information relayed from AtkObject.
- *   (AtkObject instances will connect to the "notify"
- *   signal in their host objects, and relay the signals when appropriate).
- */
-
-/* For other signals, see related interfaces
- *
- *    AtkActionIface,
- *    AtkComponentIface,
- *    AtkHypertextIface,
- *    AtkImageIface,
- *    AtkSelectionIface,
- *    AtkTableIface,
- *    AtkTextIface,
- *    AtkValueIface.
- *
- *  The usage model for obtaining these interface instances is:
- *    ATK_<interfacename>_GET_IFACE(GObject *accessible),
- *    where accessible, though specified as a GObject, is
- *    the AtkObject instance being queried.
- *  More usually, the interface will be used via a cast to the
- *    interface's corresponding "type":
- *
- *    AtkText textImpl = ATK_TEXT(accessible);
- *    if (textImpl)
- *      {
- *        cpos = atk_text_get_caret_position(textImpl);
- *      }
- *
- *  If it's known in advance that accessible implements AtkTextIface,
- *    this is shortened to:
- *
- *    cpos = atk_text_get_caret_position (ATK_TEXT (accessible));
- */
 
 G_END_DECLS
 
