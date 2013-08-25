@@ -59,7 +59,6 @@ enum {
   TEXT_ATTRIBUTES_CHANGED,
   TEXT_INSERT,
   TEXT_REMOVE,
-  TEXT_UPDATE,
   LAST_SIGNAL
 };
 
@@ -255,28 +254,6 @@ atk_text_base_init (AtkTextIface *class)
 		      3, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING);
 
       /**
-       * AtkText::text-update:
-       * @atktext: the object which received the signal.
-       * @arg1: unknown
-       * @arg2: unknown
-       * @arg3: unknown
-       * @arg4: unknown
-       *
-       * The "text-update" signal is emitted when a new text is
-       * updated.
-       */
-      atk_text_signals[TEXT_UPDATE] =
-	g_signal_new ("text_update",
-		      ATK_TYPE_TEXT,
-		      G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-		      0,
-		      (GSignalAccumulator) NULL, NULL,
-		      atk_marshal_VOID__INT_INT_INT_STRING,
-		      G_TYPE_NONE,
-		      4, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING);
-
-
-      /**
        * AtkText::text-caret-moved:
        * @atktext: the object which received the signal.
        * @arg1: The new position of the text caret.
@@ -401,7 +378,7 @@ atk_text_get_character_at_offset (AtkText      *text,
  * Gets the specified text.
  *
  * Deprecated: This method is deprecated since ATK version
- * 2.9.3. Please use atk_text_get_at_offset() instead.
+ * 2.9.3. Please use atk_text_get_string_at_offset() instead.
  *
  * Returns: a newly allocated string containing the text after @offset bounded
  *   by the specified @boundary_type. Use g_free() to free the returned string.
@@ -473,6 +450,9 @@ atk_text_get_text_after_offset (AtkText          *text,
  * string is from the line start at or before the offset to the line
  * start after the offset.
  *
+ * Deprecated: This method is deprecated since ATK version
+ * 2.9.4. Please use atk_text_get_string_at_offset() instead.
+ *
  * Returns: a newly allocated string containing the text at @offset bounded by
  *   the specified @boundary_type. Use g_free() to free the returned string.
  **/
@@ -518,7 +498,7 @@ atk_text_get_text_at_offset (AtkText          *text,
  * Gets the specified text.
  *
  * Deprecated: This method is deprecated since ATK version
- * 2.9.3. Please use atk_text_get_at_offset() instead.
+ * 2.9.3. Please use atk_text_get_string_at_offset() instead.
  *
  * Returns: a newly allocated string containing the text before @offset bounded
  *   by the specified @boundary_type. Use g_free() to free the returned string.
@@ -552,6 +532,92 @@ atk_text_get_text_before_offset (AtkText          *text,
 
   if (iface->get_text_before_offset)
     return (*(iface->get_text_before_offset)) (text, offset, boundary_type, real_start_offset, real_end_offset);
+  else
+    return NULL;
+}
+
+/**
+ * atk_text_get_string_at_offset:
+ * @text: an #AtkText
+ * @offset: position
+ * @granularity: An #AtkTextGranularity
+ * @start_offset: (out): the start offset of the returned string, or -1
+ *                if an error has occurred (e.g. invalid offset, not implemented)
+ * @end_offset: (out): the offset of the first character after the returned string,
+ *              or -1 if an error has occurred (e.g. invalid offset, not implemented)
+ *
+ * Gets a portion of the text exposed through an #AtkText according to a given @offset
+ * and a specific @granularity, along with the start and end offsets defining the
+ * boundaries of such a portion of text.
+ *
+ * If @granularity is ATK_TEXT_GRANULARITY_CHAR the character at the
+ * offset is returned.
+ *
+ * If @granularity is ATK_TEXT_GRANULARITY_WORD the returned string
+ * is from the word start at or before the offset to the word start after
+ * the offset.
+ *
+ * The returned string will contain the word at the offset if the offset
+ * is inside a word and will contain the word before the offset if the
+ * offset is not inside a word.
+ *
+ * If @granularity is ATK_TEXT_GRANULARITY_SENTENCE the returned string
+ * is from the sentence start at or before the offset to the sentence
+ * start after the offset.
+ *
+ * The returned string will contain the sentence at the offset if the offset
+ * is inside a sentence and will contain the sentence before the offset
+ * if the offset is not inside a sentence.
+ *
+ * If @granularity is ATK_TEXT_GRANULARITY_LINE the returned string
+ * is from the line start at or before the offset to the line
+ * start after the offset.
+ *
+ * If @granularity is ATK_TEXT_GRANULARITY_PARAGRAPH the returned string
+ * is from the start of the paragraph at or before the offset to the start
+ * of the following paragraph after the offset.
+ *
+ * Since: 2.9.4
+ *
+ * Returns: a newly allocated string containing the text at the @offset bounded
+ *   by the specified @granularity. Use g_free() to free the returned string.
+ *   Returns %NULL if the offset is invalid or no implementation is available.
+ **/
+gchar* atk_text_get_string_at_offset (AtkText *text,
+                                      gint offset,
+                                      AtkTextGranularity granularity,
+                                      gint *start_offset,
+                                      gint *end_offset)
+{
+  AtkTextIface *iface;
+  gint local_start_offset, local_end_offset;
+  gint *real_start_offset, *real_end_offset;
+
+  g_return_val_if_fail (ATK_IS_TEXT (text), NULL);
+
+  if (start_offset)
+    {
+      *start_offset = -1;
+      real_start_offset = start_offset;
+    }
+  else
+    real_start_offset = &local_start_offset;
+
+  if (end_offset)
+    {
+      *end_offset = -1;
+      real_end_offset = end_offset;
+    }
+  else
+    real_end_offset = &local_end_offset;
+
+  if (offset < 0)
+    return NULL;
+
+  iface = ATK_TEXT_GET_IFACE (text);
+
+  if (iface->get_string_at_offset)
+    return (*(iface->get_string_at_offset)) (text, offset, granularity, real_start_offset, real_end_offset);
   else
     return NULL;
 }
