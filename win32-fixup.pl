@@ -3,13 +3,13 @@
 
 require "../local-paths.lib";
 
-$package_string = "\"atk 2.9.03\"";
-$package_version = "\"2.9.03\"";
-$atk_version = "2.9.03";
+$package_string = "\"atk 2.9.04\"";
+$package_version = "\"2.9.04\"";
+$atk_version = "2.9.04";
 $major = 2;
 $minor = 9;
-$micro = 3;
-$binary_age = 20903;
+$micro = 4;
+$binary_age = 20904;
 $interface_age = 1;
 $gettext_package = "atk20";
 $current_minus_age = 0;
