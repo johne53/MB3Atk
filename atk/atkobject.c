@@ -202,6 +202,9 @@ enum {
   N_("image map")
   N_("notification")
   N_("info bar")
+  N_("level bar")
+  N_("title bar")
+  N_("block quote")
 #endif /* 0 */
 
 static void            atk_object_class_init        (AtkObjectClass  *klass);
@@ -580,8 +583,11 @@ atk_object_class_init (AtkObjectClass *klass)
    * @atkobject: the object which received the signal.
    * @arg1: The index of the added or removed child. The value can be
    * -1. This is used if the value is not known by the implementor
-   * when the child is added or irrelevant.
-   * @arg2: A gpointer to the child AtkObject which was added or removed
+   * when the child is added/removed or irrelevant.
+   * @arg2: A gpointer to the child AtkObject which was added or
+   * removed. If the child was removed, it is possible that it is not
+   * available for the implementor. In that case this pointer can be
+   * NULL.
    *
    * The signal "children-changed" is emitted when a child is added or
    * removed form an object. It supports two details: "add" and
