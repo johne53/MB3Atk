@@ -13,6 +13,7 @@ $binary_age = 21000;
 $interface_age = 1;
 $gettext_package = "atk20";
 $current_minus_age = 0;
+$exec_prefix = "lib";
 
 sub process_file
 {
@@ -33,6 +34,7 @@ sub process_file
 	    s/\@LT_CURRENT_MINUS_AGE\@/$current_minus_age/g;
 	    s/\@PACKAGE_STRING@/$package_string/g;
 	    s/\@PACKAGE_VERSION@/$package_version/g;
+	    s/\@ATK_API_VERSION@/$atk_api_version/g;
 	    s/\@VERSION@/$package_version/g;
 	    s/\@GlibBuildRootFolder@/$glib_build_root_folder/g;
 	    s/\@GenericIncludeFolder@/$generic_include_folder/g;
@@ -44,12 +46,17 @@ sub process_file
 	    s/\@Debug32TargetFolder@/$debug32_target_folder/g;
 	    s/\@Release32TargetFolder@/$release32_target_folder/g;
 	    s/\@TargetSxSFolder@/$target_sxs_folder/g;
+	    s/\@prefix@/$prefix/g;
+	    s/\@exec_prefix@/$exec_prefix/g;
+	    s/\@includedir@/$generic_include_folder/g;
+	    s/\@libdir@/$generic_library_folder/g;
 	    print OUTPUT;
 	}
 }
 
 process_file ("config.h.win32");
 process_file ("atk/atkversion.h");
+process_file ("atk.pc");
 
 my $command=join(' ',@ARGV);
 if ($command eq -buildall) {
