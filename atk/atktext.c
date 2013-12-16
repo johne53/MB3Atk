@@ -17,9 +17,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "atktext.h"
+#include "atk.h"
 #include "atkmarshal.h"
-#include "atk-enum-types.h"
 
 #include <string.h>
 
@@ -226,7 +225,7 @@ atk_text_base_init (AtkTextIface *class)
       atk_text_signals[TEXT_INSERT] =
 	g_signal_new ("text_insert",
 		      ATK_TYPE_TEXT,
-		      G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+		      G_SIGNAL_RUN_LAST,
 		      0,
 		      (GSignalAccumulator) NULL, NULL,
 		      atk_marshal_VOID__INT_INT_STRING,
@@ -246,7 +245,7 @@ atk_text_base_init (AtkTextIface *class)
       atk_text_signals[TEXT_REMOVE] =
 	g_signal_new ("text_remove",
 		      ATK_TYPE_TEXT,
-		      G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+		      G_SIGNAL_RUN_LAST,
 		      0,
 		      (GSignalAccumulator) NULL, NULL,
 		      atk_marshal_VOID__INT_INT_STRING,
@@ -577,7 +576,7 @@ atk_text_get_text_before_offset (AtkText          *text,
  * is from the start of the paragraph at or before the offset to the start
  * of the following paragraph after the offset.
  *
- * Since: 2.9.4
+ * Since: 2.10
  *
  * Returns: a newly allocated string containing the text at the @offset bounded
  *   by the specified @granularity. Use g_free() to free the returned string.
@@ -1066,10 +1065,8 @@ atk_text_get_range_extents (AtkText          *text,
 
   g_return_if_fail (ATK_IS_TEXT (text));
   g_return_if_fail (rect);
+  g_return_if_fail (start_offset >= 0 && start_offset < end_offset);
 
-  if (start_offset < 0 || start_offset >= end_offset)
-    return;
- 
   iface = ATK_TEXT_GET_IFACE (text);
 
   if (iface->get_range_extents)
@@ -1090,7 +1087,6 @@ atk_text_get_range_extents (AtkText          *text,
  *
  * Returns: (array zero-terminated=1): Array of AtkTextRange. The last
  *          element of the array returned by this function will be NULL.
- * Virtual: get_bounded_ranges
  **/
 AtkTextRange**
 atk_text_get_bounded_ranges (AtkText          *text,

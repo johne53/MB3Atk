@@ -15,9 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-#include "libatk.vs10.sourcefiles.filters"
+#include "atk.vs10.sourcefiles.filters"
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="..\..\..\config.h.win32"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\atk\atkmarshal.list"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\atk\atk.symbols"><Filter>Resource Files</Filter></CustomBuild>
   </ItemGroup>

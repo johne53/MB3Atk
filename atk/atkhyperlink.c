@@ -17,8 +17,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include "config.h"
 #include "atkhyperlink.h"
-#include "atkintl.h"
+#include <glib/gi18n-lib.h>
 
 /**
  * SECTION:atkhyperlink
@@ -343,7 +344,7 @@ atk_hyperlink_is_valid (AtkHyperlink *link)
  *           content inline.  Ordinary HTML links will usually return
  *           %FALSE, but an inline &lt;src&gt; HTML element will return
  *           %TRUE.
-a *
+ *
  * Returns: whether or not this link displays its content inline.
  *
  **/
@@ -395,7 +396,7 @@ atk_hyperlink_get_n_anchors (AtkHyperlink *link)
  * Please use ATK_STATE_FOCUSABLE for all links, and ATK_STATE_FOCUSED
  * for focused links.
  *
- * Returns: True is the AtkHyperlink is selected, False otherwise
+ * Returns: True if the AtkHyperlink is selected, False otherwise
  **/
 gboolean
 atk_hyperlink_is_selected_link (AtkHyperlink *link)

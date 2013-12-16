@@ -188,6 +188,20 @@ G_BEGIN_DECLS
  *@ATK_ROLE_TIMER: An object containing a numerical counter which
  * indicates an amount of elapsed time from a start point, or the time
  * remaining until an end point. @Since: ATK-2.12
+ *@ATK_ROLE_DESCRIPTION_LIST: An object that represents a list of
+ * term-value groups. A term-value group represents a individual
+ * description and consist of one or more names
+ * (ATK_ROLE_DESCRIPTION_TERM) followed by one or more values
+ * (ATK_ROLE_DESCRIPTION_VALUE). For each list, there should not be
+ * more than one group with the same term name. @Since: ATK-2.12
+ *@ATK_ROLE_DESCRIPTION_TERM: An object that represents the term, or
+ * name, part of a term-description group in a description
+ * list. @Since: ATK-2.12
+ *@ATK_ROLE_DESCRIPTION_VALUE: An object that represents the
+ * description, definition or value of a term-description group in a
+ * description list. The values within a group are alternatives,
+ * meaning that you can have several ATK_ROLE_DESCRIPTION_VALUE for a
+ * given ATK_ROLE_DESCRIPTION_TERM. @Since: ATK-2.12
  *@ATK_ROLE_LAST_DEFINED: not a valid role, used for finding end of the enumeration
  *
  * Describes the role of an object
@@ -312,6 +326,9 @@ typedef enum
   ATK_ROLE_MATH,
   ATK_ROLE_RATING,
   ATK_ROLE_TIMER,
+  ATK_ROLE_DESCRIPTION_LIST,
+  ATK_ROLE_DESCRIPTION_TERM,
+  ATK_ROLE_DESCRIPTION_VALUE,
   ATK_ROLE_LAST_DEFINED
 } AtkRole;
 
@@ -403,20 +420,13 @@ typedef struct _AtkStateSet               AtkStateSet;
 
 /**
  * AtkPropertyValues:
- * @property_name: The name of the ATK property which is being presented or which has been changed.
- * @old_value: The old property value, NULL; in some contexts this value is undefined (see note below).
+ * @property_name: The name of the ATK property which has changed.
+ * @old_value: NULL. This field is not used anymore.
  * @new_value: The new value of the named property.
  *
- * Note: for most properties the old_value field of #AtkPropertyValues
- * will not contain a valid value.
- *
- * Currently, the only property for which old_value is used is
- * accessible-state; for instance if there is a focus state the
- * property change handler will be called for the object which lost the focus
- * with the old_value containing an #AtkState value corresponding to focused
- * and the property change handler will be called for the object which
- * received the focus with the new_value containing an #AtkState value
- * corresponding to focused.
+ * Note: @old_value field of #AtkPropertyValues will not contain a
+ * valid value. This is a field defined with the purpose of contain
+ * the previous value of the property, but is not used anymore.
  *
  **/
 struct _AtkPropertyValues
@@ -460,6 +470,8 @@ typedef gboolean (*AtkFunction)          (gpointer user_data);
  * An AtkPropertyChangeHandler is a function which is executed when an
  * AtkObject's property changes value. It is specified in a call to
  * atk_object_connect_property_change_handler().
+ *
+ * Deprecated: Since 2.12.
  */
 typedef void (*AtkPropertyChangeHandler) (AtkObject* obj, AtkPropertyValues* vals);
 
@@ -479,6 +491,13 @@ struct _AtkObject
 
 /**
  * AtkObjectClass:
+ * @connect_property_change_handler: specifies a function to be called
+ *   when a property changes value. This virtual function is
+ *   deprecated since 2.12 and it should not be overriden. Connect
+ *   directly to property-change or notify signal instead.
+ * @remove_property_change_handler: removes a property changed handler
+ *   as returned by @connect_property_change_handler. This virtual
+ *   function is deprecated sice 2.12 and it should not be overriden.
  * @focus_event: The signal handler which is executed when there is a
  *   focus event for an object. This virtual function is deprecated
  *   since 2.9.4 and it should not be overriden. Use
@@ -645,6 +664,7 @@ AtkObject*              atk_implementor_ref_accessible            (AtkImplemento
 const gchar*            atk_object_get_name                       (AtkObject *accessible);
 const gchar*            atk_object_get_description                (AtkObject *accessible);
 AtkObject*              atk_object_get_parent                     (AtkObject *accessible);
+AtkObject*              atk_object_peek_parent                    (AtkObject *accessible);
 gint                    atk_object_get_n_accessible_children      (AtkObject *accessible);
 AtkObject*              atk_object_ref_accessible_child           (AtkObject *accessible,
                                                                    gint        i);
@@ -669,8 +689,10 @@ void                    atk_object_set_role                       (AtkObject *ac
                                                                    AtkRole   role);
 
 
+G_DEPRECATED
 guint                atk_object_connect_property_change_handler  (AtkObject                      *accessible,
                                                                   AtkPropertyChangeHandler       *handler);
+G_DEPRECATED
 void                 atk_object_remove_property_change_handler   (AtkObject                      *accessible,
                                                                   guint                          handler_id);
 
@@ -692,6 +714,7 @@ gboolean              atk_object_remove_relationship           (AtkObject      *
 								AtkRelationType relationship,
 								AtkObject      *target);
 const gchar*          atk_role_get_localized_name              (AtkRole     role);
+G_DEPRECATED
 AtkRole               atk_role_register                        (const gchar *name);
 const gchar*          atk_object_get_object_locale             (AtkObject   *accessible);
 
