@@ -37,6 +37,10 @@ Makefile.in
 /missing
 /mkinstalldirs
 /stamp-h1
+/msvc/atk.vsprops
+/msvc/atk-2.0-debug.def
+/msvc/atk-2.0-release.def
+/win32-fixup.pl.in
 atkversion.h
 tests/testrelation
 tests/testrole
@@ -84,7 +88,3 @@ docs/tmpl/atkstateset.sgml
 docs/tmpl/atkstreamablecontent.sgml
 docs/tmpl/atktable.sgml
 docs/tmpl/atkvalue.sgml
-/msvc/atk.vsprops
-/msvc/atk-2.0-debug.def
-/msvc/atk-2.0-release.def
-/win32-fixup.pl.in
