@@ -25,6 +25,7 @@
   <!ENTITY atk-AtkStateSet SYSTEM "xml/atkstateset.xml">
   <!ENTITY atk-AtkStreamableContent SYSTEM "xml/atkstreamablecontent.xml">
   <!ENTITY atk-AtkTable SYSTEM "xml/atktable.xml">
+  <!ENTITY atk-AtkTableCell SYSTEM "xml/atktablecell.xml">
   <!ENTITY atk-AtkText SYSTEM "xml/atktext.xml">
   <!ENTITY atk-AtkUtil SYSTEM "xml/atkutil.xml">
   <!ENTITY atk-AtkValue SYSTEM "xml/atkvalue.xml">
@@ -39,40 +40,79 @@
     <releaseinfo>for ATK &version;</releaseinfo>
   </bookinfo>
 
-  <chapter id="atk">
-    <title>ATK Library</title>
+  <chapter id="overview">
+    <title>Overview</title>
+     <para>
+       GNOME provides support for accessibility devices using the ATK
+       framework. This framework defines a set of interfaces to which
+       graphical interface components adhere. This allows, for instance,
+       screen readers to read the text of an interface and interact with its
+       controls. ATK support is built into GTK+ and the rest of the GNOME
+       platform, so any application using GTK+ will have reasonable
+       accessibility support for free.
+     </para>
 
+     <para>
+     Nonetheless, you should be aware of accessibility issues when when
+     developing your applications. Although GTK+ interfaces provide
+     reasonable accessibility by default, you can often improve how well
+     your program behaves with accessibility tools by providing additional
+     information to ATK. If you develop custom widgets, you should ensure
+     that they expose their properties to ATK
+     </para>
+
+  </chapter>
+
+  <chapter id="atkobject">
+    <title>Base accessibility object</title>
+    &atk-AtkObject;
+  </chapter>
+
+  <chapter id="toolkit">
+    <title>Event and toolkit support</title>
+    &atk-AtkUtil;
+  </chapter>
+
+  <chapter id="interfaces">
+    <title>ATK Interfaces</title>
     &atk-AtkAction;
     &atk-AtkComponent;
     &atk-AtkDocument;
     &atk-AtkEditabletext;
-    &atk-AtkGObjectAccessible;
-    &atk-AtkHyperlink;
     &atk-AtkHyperlinkImpl;
     &atk-AtkHypertext;
     &atk-AtkImage;
-    &atk-AtkNoOpObject;
-    &atk-AtkNoOpObjectFactory;
-    &atk-AtkObject;
-    &atk-AtkObjectFactory;
-    &atk-AtkPlug;
-    &atk-AtkRegistry;
-    &atk-AtkRelation;
-    &atk-AtkRelationSet;
     &atk-AtkSelection;
-    &atk-AtkSocket;
-    &atk-AtkState;
-    &atk-AtkStateSet;
     &atk-AtkStreamableContent;
     &atk-AtkTable;
+    &atk-AtkTableCell;
     &atk-AtkText;
-    &atk-AtkUtil;
     &atk-AtkValue;
     &atk-AtkWindow;
   </chapter>
 
+  <chapter id="data">
+    <title>Basic accessible data types</title>
+    &atk-AtkRelation;
+    &atk-AtkRelationSet;
+    &atk-AtkState;
+    &atk-AtkStateSet;
+  </chapter>
+
+  <chapter id="accessibles">
+    <title>Custom accessible objects</title>
+    &atk-AtkGObjectAccessible;
+    &atk-AtkHyperlink;
+    &atk-AtkNoOpObject;
+    &atk-AtkPlug;
+    &atk-AtkSocket;
+  </chapter>
+
   <chapter id="utilities">
     <title>Utilities</title>
+    &atk-AtkNoOpObjectFactory;
+    &atk-AtkObjectFactory;
+    &atk-AtkRegistry;
     &atk-AtkVersion;
   </chapter>
 
@@ -123,6 +163,8 @@
   <index id="api-index-2-10" role="2.10">
     <title>Index of new symbols in 2.10</title>
   </index>
-
+  <index id="api-index-2-12" role="2.12">
+    <title>Index of new symbols in 2.12</title>
+  </index>
 </book>
 
