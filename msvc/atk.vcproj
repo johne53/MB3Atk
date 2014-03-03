@@ -408,6 +408,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\atk\atktablecell.c"
+				>
+			</File>
+			<File
 				RelativePath="..\atk\atktext.c"
 				>
 			</File>
@@ -542,6 +546,10 @@
 			</File>
 			<File
 				RelativePath="..\atk\atktable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\atk\atktablecell.h"
 				>
 			</File>
 			<File
