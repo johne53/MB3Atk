@@ -45,6 +45,9 @@ atk_sources = 	\
 	atkobject.c		\
 	atkobjectfactory.c	\
 	atkplug.c		\
+	atkprivate.h		\
+	atkprivate.c		\
+	atkrange.c		\
 	atkregistry.c		\
 	atkrelation.c		\
 	atkrelationset.c	\
@@ -83,6 +86,7 @@ atk_headers = \
 	atkobjectfactory.h	\
         atkplug.h		\
         atkimage.h		\
+	atkrange.h		\
         atkregistry.h		\
         atkrelation.h		\
         atkrelationtype.h	\
