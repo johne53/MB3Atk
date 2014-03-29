@@ -37,6 +37,9 @@ Makefile.in
 /missing
 /mkinstalldirs
 /stamp-h1
+/msvc/atk.vsprops
+/msvc/atk-2.0-debug.def
+/msvc/atk-2.0-release.def
 atkversion.h
 tests/testrelation
 tests/testrole
