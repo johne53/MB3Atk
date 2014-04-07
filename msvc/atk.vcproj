@@ -68,8 +68,8 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Use existing Module Definition file"
-				CommandLine="cd $(ProjectDir)"
+				Description="Generate Module Definition file"
+				CommandLine="echo EXPORTS &gt; $(ProjectDir)\atk-2.0-debug.def&#x0D;&#x0A;cl /EP -DG_ENABLE_DEBUG -DG_OS_WIN32 -DINCLUDE_INTERNAL_SYMBOLS -DALL_FILES -DG_GNUC_MALLOC= -DG_GNUC_CONST= -DG_GNUC_NULL_TERMINATED= -DG_GNUC_NORETURN= -DG_GNUC_PRINTF=;G_GNUC_PRINTF -DG_GNUC_FORMAT=;G_GNUC_FORMAT ..\atk\atk.symbols &gt;&gt; $(ProjectDir)\atk-2.0-debug.def&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
