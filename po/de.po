@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: atk 1.5.4\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=atk&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-04-26 02:46+0000\n"
-"PO-Revision-Date: 2014-04-27 20:19+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2014-08-05 02:46+0000\n"
+"PO-Revision-Date: 2014-08-07 00:39+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../atk/atkhyperlink.c:128
 msgid "Selected Link"
@@ -498,9 +498,8 @@ msgid "log"
 msgstr "Protokoll"
 
 #: ../atk/atkobject.c:208
-#, fuzzy
 msgid "marquee"
-msgstr "Festzelt"
+msgstr "Markise"
 
 #: ../atk/atkobject.c:209
 msgid "math"
@@ -552,6 +551,8 @@ msgstr "Barrierefreies Eltern-Element"
 #: ../atk/atkobject.c:387
 msgid "Parent of the current accessible as returned by atk_object_get_parent()"
 msgstr ""
+"Eltern-Element des aktuellen barrierefreien wie von atk_object_get_parent() "
+"zurückgegeben"
 
 #: ../atk/atkobject.c:403
 msgid "Accessible Value"
