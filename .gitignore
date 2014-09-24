@@ -84,3 +84,7 @@ docs/tmpl/atkstateset.sgml
 docs/tmpl/atkstreamablecontent.sgml
 docs/tmpl/atktable.sgml
 docs/tmpl/atkvalue.sgml
+
+/msvc/atk.vsprops
+/msvc/atk-2.0-debug.def
+/msvc/atk-2.0-release.def
