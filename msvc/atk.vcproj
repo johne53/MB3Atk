@@ -68,7 +68,6 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description=""
 				CommandLine=""
 			/>
 			<Tool
@@ -164,7 +163,6 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description=""
 				CommandLine=""
 			/>
 			<Tool
@@ -217,7 +215,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generate enumtypes and configuration files"
-				CommandLine="mkdir &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot; 2&gt; NUL&#x0D;&#x0A;perl $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead &quot;/* Generated data (by glib-mkenums) */\n\n#if defined(ATK_DISABLE_SINGLE_INCLUDES) &amp;&amp; !defined (__ATK_H_INSIDE__) &amp;&amp; !defined (ATK_COMPILATION)\n#error \&quot;Only &apos;atk.h&apos; can be included directly.\&quot;\n#endif\n\n#ifndef __ATK_ENUM_TYPES_H__\n#define __ATK_ENUM_TYPES_H__\n\nG_BEGIN_DECLS\n&quot; --fprod &quot;/* enumerations from \&quot;@filename@\&quot; */\n&quot; --vhead &quot;GType @enum_name@_get_type (void);\n#define ATK_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n&quot; --ftail &quot;G_END_DECLS\n\n#endif /* __ATK_ENUM_TYPES_H__ */\n\n/* Generated data ends here */\n&quot; ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.h&#x0D;&#x0A;perl $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead &quot;/* Generated data (by glib-mkenums) */\n\n#include \&quot;atk.h\&quot;\n&quot; --fprod &quot;\n/* enumerations from \&quot;@filename@\&quot; */&quot; --vhead &quot;GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {&quot; --vprod &quot;      { @VALUENAME@, \&quot;@VALUENAME@\&quot;, \&quot;@valuenick@\&quot; },&quot; --vtail &quot;      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\&quot;@EnumName@\&quot;, values);\n  }\n  return etype;\n}\n&quot; --ftail &quot;\n/* Generated data ends here */\n&quot; ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.c&#x0D;&#x0A;copy /Y &quot;..\atk\atk-enum-types.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot;&#x0D;&#x0A;cd ..&#x0D;&#x0A;perl win32-fixup.pl&#x0D;&#x0A;copy /Y &quot;config.h.win32&quot; &quot;config.h&quot;&#x0D;&#x0A;copy /Y &quot;config.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0&quot;&#x0D;&#x0A;copy /Y &quot;atk\atkversion.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot;&#x0D;&#x0A;glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --header &gt; &quot;atk\atkmarshal.h&quot;&#x0D;&#x0A;glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --body &gt; &quot;atk\atkmarshal.c&quot;&#x0D;&#x0A;"
+				CommandLine="mkdir &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot; 2&gt; NUL&#x0D;&#x0A;perl $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead &quot;/* Generated data (by glib-mkenums) */\n\n#if defined(ATK_DISABLE_SINGLE_INCLUDES) &amp;&amp; !defined (__ATK_H_INSIDE__) &amp;&amp; !defined (ATK_COMPILATION)\n#error \&quot;Only &apos;atk.h&apos; can be included directly.\&quot;\n#endif\n\n#ifndef __ATK_ENUM_TYPES_H__\n#define __ATK_ENUM_TYPES_H__\n\n#include \&quot;atk/atkversion.h\&quot;\n#include \&quot;glib-object.h\&quot;\n\nG_BEGIN_DECLS\n&quot; --fprod &quot;/* enumerations from \&quot;@filename@\&quot; */\n&quot; --vhead &quot;ATK_AVAILABLE_IN_ALL\nGType @enum_name@_get_type (void);\n#define ATK_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n&quot; --ftail &quot;G_END_DECLS\n\n#endif /* __ATK_ENUM_TYPES_H__ */\n\n/* Generated data ends here */\n&quot; ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.h&#x0D;&#x0A;perl $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead &quot;/* Generated data (by glib-mkenums) */\n\n#include \&quot;config.h\&quot;\n\n#include \&quot;atk.h\&quot;\n&quot; --fprod &quot;\n/* enumerations from \&quot;@filename@\&quot; */&quot; --vhead &quot;GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {&quot; --vprod &quot;      { @VALUENAME@, \&quot;@VALUENAME@\&quot;, \&quot;@valuenick@\&quot; },&quot; --vtail &quot;      { 0, NULL, NULL }\n    };\n    etype = g_@type@_register_static (\&quot;@EnumName@\&quot;, values);\n  }\n  return etype;\n}\n&quot; --ftail &quot;\n/* Generated data ends here */\n&quot; ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.c&#x0D;&#x0A;copy /Y &quot;..\atk\atk-enum-types.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot;&#x0D;&#x0A;cd ..&#x0D;&#x0A;perl win32-fixup.pl&#x0D;&#x0A;copy /Y &quot;config.h.win32&quot; &quot;config.h&quot;&#x0D;&#x0A;copy /Y &quot;config.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0&quot;&#x0D;&#x0A;copy /Y &quot;atk\atkversion.h&quot; &quot;$(GenericIncludeFolder)\atk-2.0\atk&quot;&#x0D;&#x0A;glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --header &gt; &quot;atk\atkmarshal.h&quot;&#x0D;&#x0A;glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --body &gt; &quot;atk\atkmarshal.c&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -585,6 +583,10 @@
 			</File>
 			<File
 				RelativePath="..\atk\atkwindow.h"
+				>
+			</File>
+			<File
+				RelativePath="..\config.h"
 				>
 			</File>
 		</Filter>
