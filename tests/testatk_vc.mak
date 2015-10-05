@@ -1,4 +1,4 @@
-!include ..\build\testsrules_msvc.mak
+!include ..\build\detectenv-msvc.mak
 
 BUILD_PATH = ..\build\win32\vs$(VSVER)\$(CFG)\$(PLAT)\bin
 LDFLAGS_PATH = /libpath:$(BUILD_PATH) /libpath:..\..\vs$(VSVER)\$(PLAT)\lib
@@ -18,7 +18,11 @@ CFLAGS =	\
 EMPTY_ITEM =
 
 test_programs = \
-#include "test_progs"
+	testdocument$(EXEEXT)	\
+	testrole$(EXEEXT)	\
+	testrelation$(EXEEXT)	\
+	teststateset$(EXEEXT)	\
+	testvalue$(EXEEXT)	\
 	$(EMPTY_ITEM)
 
 !if "$(VALID_CFGSET)" == "FALSE"
@@ -37,7 +41,8 @@ clean:
 all: $(test_programs)
 
 .c$(EXEEXT):
-	$(CC) $(CFLAGS) $< $(LD_CFLAGS) $(LDFLAGS) $(TEST_ATK_LIBS)
+	$(CC) $(CFLAGS) $< $(LD_CFLAGS) $(LDFLAGS) $(TEST_ATK_LIBS) /Fe$@
+	@-if exist $@.manifest mt /nologo /manifest $@.manifest /outputresource:$@;1
 
 clean:
 	@-del /q/f *$(EXEEXT).manifest
