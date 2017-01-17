@@ -16,8 +16,8 @@ dnl set ATK_BINARY_AGE _and_ ATK_INTERFACE_AGE to 0.
 
 dnl The triplet 
 m4_define([atk_major_version], [2])
-m4_define([atk_minor_version], [22])
-m4_define([atk_micro_version], [0])
+m4_define([atk_minor_version], [23])
+m4_define([atk_micro_version], [4])
 m4_define([atk_version],
           [atk_major_version.atk_minor_version.atk_micro_version])
 
@@ -254,15 +254,14 @@ atk/Makefile
 atk/atk.rc
 atk/atkversion.h
 tests/Makefile
-build/Makefile
-build/win32/Makefile
-build/win32/vs9/Makefile
-build/win32/vs9/atk-version-paths.vsprops
-build/win32/vs10/Makefile
-build/win32/vs10/atk-version-paths.props
-build/win32/vs11/Makefile
-build/win32/vs12/Makefile
-build/win32/vs14/Makefile
+win32/Makefile
+win32/vs9/Makefile
+win32/vs9/atk-version-paths.vsprops
+win32/vs10/Makefile
+win32/vs10/atk-version-paths.props
+win32/vs11/Makefile
+win32/vs12/Makefile
+win32/vs14/Makefile
 docs/Makefile
 docs/version.xml
 atk.spec
