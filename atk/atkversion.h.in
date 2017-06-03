@@ -3,7 +3,7 @@
  * Copyright (C) 2012 Igalia, S.L.
  * Copyright (C) 2014 Chun-wei Fan
  *
- * Author: Alejandro Piñeiro Iglesias <apinheiro@igalia.com>
+ * Author: Alejandro PiÃ±eiro Iglesias <apinheiro@igalia.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -267,9 +267,11 @@
 #ifdef ATK_DISABLE_DEPRECATION_WARNINGS
 #define ATK_DEPRECATED _ATK_EXTERN
 #define ATK_DEPRECATED_FOR(f) _ATK_EXTERN
+#define ATK_UNAVAILABLE(maj,min) _ATK_EXTERN
 #else
 #define ATK_DEPRECATED G_DEPRECATED _ATK_EXTERN
 #define ATK_DEPRECATED_FOR(f) G_DEPRECATED_FOR(f) _ATK_EXTERN
+#define ATK_UNAVAILABLE(maj,min) G_UNAVAILABLE(maj,min) _ATK_EXTERN
 #endif
 
 #define ATK_AVAILABLE_IN_ALL _ATK_EXTERN
