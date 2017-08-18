@@ -16,6 +16,12 @@ into atk.vcxproj and atk.vcxproj.filters respectively.
 The dependencies for this package are gettext-runtime (libintl), GLib*
 and ZLib.
 
+You will also need a Python 2.7.x or 3.x installation, as Python will be
+used to run glib-genmarshal, which was converted into a Python script from
+a compiled C program, in addition to generating the atk.pc pkg-config
+file for the build.  See PythonDir (32-bit builds) or PythonDirX64 (x64
+builds) in atk-version-paths.props to see that they point to the correct paths.
+
 a) look for all of the dependencies (except GLib*) under
 
    http://ftp.gnome.org/pub/GNOME/binaries/win32/dependencies/ (32-bit) -OR-
@@ -73,9 +79,23 @@ your GLib sources in <root>\ and build it from there, following the
 instructions in <root>\glib<-version>\win32\vs10, so that the required
 headers, EXEs, DLLs and LIBs will end up in
 <root>\vs10\<PlatformName>\include\glib-2.0 (headers)
-<root>\vs10\<PlatformName>\lib (LIBs, also glib-2.0/include/glibocnfig.h)
+<root>\vs10\<PlatformName>\lib (LIBs, also glib-2.0/include/glibconfig.h)
 <root>\vs10\<PlatformName>\bin (EXEs/DLLs)
 respectively.
+
+Building introspection files is now integrated in the solution files, but this is
+not built by default.  In order for this to work, ensure that PythonDir (32-bit builds)
+or PythonDirX64 (x64 builds) are set at the installation directory of where your
+Python installation is.  Please note the following:
+
+-This Python installation must be the same installation/configuration as the
+ one that was used to build GObject-Introspection.
+
+-g-ir-scanner needs to be found at <root>\vs10\<PlatformName>\bin, and the
+ other Python items needs to be under <root>\vs10\<PlatformName>\lib\gobject-introspection.
+
+-Use the rebuild command on this project, atk-introspect, to re-build or build for other
+ configurations.
 
 After the build of ATK, the "install" project will copy build results
 and headers into their appropriate location under <root>\vs10\<PlatformName>.
