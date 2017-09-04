@@ -345,6 +345,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\atk\atkmarshal.c"
+				>
+			</File>
+			<File
 				RelativePath="..\atk\atkmisc.c"
 				>
 			</File>
