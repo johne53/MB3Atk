@@ -78,6 +78,7 @@ atk_version_conf.set('ATK_MICRO_VERSION', atk_micro_version)
 atk_version_conf.set('ATK_BINARY_AGE', atk_binary_age)
 atk_version_conf.set('ATK_INTERFACE_AGE', atk_interface_age)
 atk_version_conf.set('LT_CURRENT_MINUS_AGE', '0')
+atk_version_conf.set('ATK_VERSION', meson.project_version())
 
 atk_version_h = configure_file(input: 'atkversion.h.in',
                output: 'atkversion.h',
@@ -136,7 +137,9 @@ libatk_dep = declare_dependency(link_with: libatk,
                                 dependencies: gobject_dep,
                                 sources: atk_enum_h)
 
-if not meson.is_cross_build()
+disable_introspection = get_option('disable_introspection')
+
+if not meson.is_cross_build() and not disable_introspection
   gnome.generate_gir(libatk,
                      sources: atk_sources + atk_headers + [ atk_enum_h ] + [ atk_version_h ],
                      namespace: 'Atk',
