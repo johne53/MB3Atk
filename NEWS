@@ -1,3 +1,17 @@
+Changes in version 2.28.1
+=========================
+
+* meson: fix version numbering. Roll new release to include it.
+
+Changes in version 2.28
+=======================
+
+* documentation
+   * Bug 791020: Remove list association from ATK_ROLE_DESCRIPTION_{TERM,VALUE}
+
+Translations
+ Claude Paroz (fr), GNOME Translation Robot (gd)
+
 Changes in version 2.27.1
 =========================
 
