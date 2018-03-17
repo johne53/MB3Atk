@@ -3,14 +3,14 @@
 
 require "../local-paths.lib";
 
-$package_string = "\"atk 2.27.00\"";
-$package_version = "\"2.27.00\"";
-$atk_version = "2.27.00";
+$package_string = "\"atk 2.29.00\"";
+$package_version = "\"2.29.00\"";
+$atk_version = "2.29.00";
 $major = 2;
-$minor = 27;
+$minor = 29;
 $micro = 0;
-$binary_age = 22700;
-$interface_age = 1;
+$binary_age = 22900;
+$interface_age = 0;
 $gettext_package = "atk20";
 $current_minus_age = 0;
 $exec_prefix = "lib";
