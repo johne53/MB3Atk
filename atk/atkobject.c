@@ -408,11 +408,10 @@ atk_object_class_init (AtkObjectClass *klass)
                                                         G_PARAM_READWRITE));
   g_object_class_install_property (gobject_class,
                                    PROP_ROLE,
-                                   g_param_spec_int    (atk_object_name_property_role,
+                                   g_param_spec_enum   (atk_object_name_property_role,
                                                         _("Accessible Role"),
                                                         _("The accessible role of this object"),
-                                                        0,
-                                                        G_MAXINT,
+                                                        ATK_TYPE_ROLE,
                                                         ATK_ROLE_UNKNOWN,
                                                         G_PARAM_READWRITE));
   g_object_class_install_property (gobject_class,
@@ -1310,7 +1309,7 @@ atk_object_real_set_property (GObject      *object,
       atk_object_set_description (accessible, g_value_get_string (value));
       break;
     case PROP_ROLE:
-      atk_object_set_role (accessible, g_value_get_int (value));
+      atk_object_set_role (accessible, g_value_get_enum (value));
       break;
     case PROP_PARENT:
       atk_object_set_parent (accessible, g_value_get_object (value));
@@ -1351,7 +1350,7 @@ atk_object_real_get_property (GObject      *object,
       g_value_set_string (value, atk_object_get_description (accessible));
       break;
     case PROP_ROLE:
-      g_value_set_int (value, atk_object_get_role (accessible));
+      g_value_set_enum (value, atk_object_get_role (accessible));
       break;
     case PROP_LAYER:
       if (ATK_IS_COMPONENT (accessible))
