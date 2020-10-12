@@ -45,7 +45,14 @@ sub process_file
 	    s/\@Release32TestSuiteFolder@/$release32_testsuite_folder/g;
 	    s/\@Debug32TargetFolder@/$debug32_target_folder/g;
 	    s/\@Release32TargetFolder@/$release32_target_folder/g;
+	    s/\@GenericWin64LibraryFolder@/$generic_win64_library_folder/g;
+	    s/\@GenericWin64BinaryFolder@/$generic_win64_binary_folder/g;
+	    s/\@Debug64TestSuiteFolder@/$debug64_testsuite_folder/g;
+	    s/\@Release64TestSuiteFolder@/$release64_testsuite_folder/g;
+	    s/\@Debug64TargetFolder@/$debug64_target_folder/g;
+	    s/\@Release64TargetFolder@/$release64_target_folder/g;
 	    s/\@TargetSxSFolder@/$target_sxs_folder/g;
+	    s/\@LibraryExt@/$library_ext/g;
 	    s/\@prefix@/$prefix/g;
 	    s/\@exec_prefix@/$exec_prefix/g;
 	    s/\@includedir@/$generic_include_folder/g;
@@ -54,12 +61,20 @@ sub process_file
 	}
 }
 
-process_file ("config.h.win32");
-process_file ("atk/atkversion.h");
+my $command=join(' ',@ARGV);
+
+if (-1 != index($command, "-linux")) {
+	$library_ext = ".a";
+} else {
+	$library_ext = ".lib";
+}
+
 process_file ("atk.pc");
 
-my $command=join(' ',@ARGV);
 if ($command eq -buildall) {
+	process_file ("config.h.win32");
+	process_file ("atk/atkversion.h");
 	process_file ("atk/atk.rc");
 	process_file ("msvc/atk.vsprops");
+	process_file ("msvc/atk.props");
 }
