@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release with Debugging Capability|x64">
+      <Configuration>Release with Debugging Capability</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{75029D43-525A-4BAD-9F6B-54192900CDC6}</ProjectGuid>
+    <RootNamespace>atk</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with Debugging Capability|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release with Debugging Capability|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="atk.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="atk.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="atk.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <TargetName>$(DllPrefix)$(ProjectName)64$(DllSuffix)D</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <TargetName>$(DllPrefix)$(ProjectName)64$(DllSuffix)</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release with Debugging Capability|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <TargetName>$(DllPrefix)$(ProjectName)64$(DllSuffix)RDC</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Prepare configuration files</Message>
+      <Command>copy /Y "..\atk\atk-enum-types.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+copy /Y "..\config.h.win32" "..\config.h"
+copy /Y "..\config.h" "$(GenericIncludeFolder)\atk-2.0"
+copy /Y "..\atk\atkversion.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>/FI$(TargetSxsFolder)\targetsxs.h %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\lib\glib-2.0\include;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ATK_COMPILATION;ATK_LOCALEDIR="Not set (placeholder)";WIN32;_WIN64;DEBUG;_DEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_WINDLL;DLL_EXPORT;G_OS_WIN32;HAVE_CONFIG_H;ENABLE_NLS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\Debug\libatk_1_0/libatk_1_0.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+      <ForcedIncludeFiles>$(TargetSxsFolder)\targetsxs.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <StringPooling>false</StringPooling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command />
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>intl64D$(LibraryExt);$(DllPrefix)glib64$(DllSuffix)D$(LibraryExt);$(DllPrefix)gobject64$(DllSuffix)D$(LibraryExt);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\win64;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\libatk_1_0/libatk_1_0.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetPath)" "$(Debug64TargetFolder)\$(TargetName)$(TargetExt)"
+copy /Y "$(TargetPath)" "$(Debug64TestSuiteFolder)\$(TargetName)$(TargetExt)"
+copy /Y "$(OutDir)$(TargetName)$(LibraryExt)" "$(GenericWin64LibraryFolder)\$(TargetName)$(LibraryExt)"
+</Command>
+    </PostBuildEvent>
+    <Manifest />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Prepare configuration files</Message>
+      <Command>copy /Y "..\atk\atk-enum-types.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+copy /Y "..\config.h.win32" "..\config.h"
+copy /Y "..\config.h" "$(GenericIncludeFolder)\atk-2.0"
+copy /Y "..\atk\atkversion.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>/FI$(TargetSxsFolder)\targetsxs.h %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\lib\glib-2.0\include;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_SECURE_SCL=0;ATK_COMPILATION;ATK_LOCALEDIR="Not set (placeholder)";WIN32;_WIN64;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_WINDLL;DLL_EXPORT;G_OS_WIN32;HAVE_CONFIG_H;ENABLE_NLS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\Release\libatk_1_0/libatk_1_0.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>CompileAsC</CompileAs>
+      <ForcedIncludeFiles>$(TargetSxsFolder)\targetsxs.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command />
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>intl64$(LibraryExt);$(DllPrefix)glib64$(DllSuffix)$(LibraryExt);$(DllPrefix)gobject64$(DllSuffix)$(LibraryExt);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\win64;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\libatk_1_0/libatk_1_0.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetPath)" "$(Release64TargetFolder)\$(TargetName)$(TargetExt)"
+copy /Y "$(TargetPath)" "$(Release64TestSuiteFolder)\$(TargetName)$(TargetExt)"
+copy /Y "$(OutDir)$(TargetName)$(LibraryExt)" "$(GenericWin64LibraryFolder)\$(TargetName)$(LibraryExt)"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release with Debugging Capability|x64'">
+    <PreBuildEvent>
+      <Message>Generate enumtypes and configuration files</Message>
+      <Command>mkdir "$(GenericIncludeFolder)\atk-2.0\atk" 2&gt; NUL
+python $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead "/* Generated data (by glib-mkenums) */\n\n#if defined(ATK_DISABLE_SINGLE_INCLUDES) &amp;&amp; !defined (__ATK_H_INSIDE__) &amp;&amp; !defined (ATK_COMPILATION)\n#error \"Only %27atk.h%27 can be included directly.\"\n#endif\n\n#ifndef __ATK_ENUM_TYPES_H__\n#define __ATK_ENUM_TYPES_H__\n\n#include \"atk/atkversion.h\"\n#include \"glib-object.h\"\n\nG_BEGIN_DECLS\n" --fprod "/* enumerations from \"%40filename%40\" */\n" --vhead "ATK_AVAILABLE_IN_ALL\nGType %40enum_name%40_get_type (void)%3b\n#define ATK_TYPE_%40ENUMSHORT%40 (%40enum_name%40_get_type())\n" --ftail "G_END_DECLS\n\n#endif /* __ATK_ENUM_TYPES_H__ */\n\n/* Generated data ends here */\n" ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.h
+python $(GlibBuildRootFolder)/gobject/glib-mkenums --fhead "/* Generated data (by glib-mkenums) */\n\n#include \"config.h\"\n\n#include \"atk.h\"\n" --fprod "\n/* enumerations from \"%40filename%40\" */" --vhead "GType\n%40enum_name%40_get_type (void)\n{\n  static GType etype = 0%3b\n  if (etype == 0) {\n    static const G%40Type%40Value values[] = {" --vprod "      { %40VALUENAME%40, \"%40VALUENAME%40\", \"%40valuenick%40\" }," --vtail "      { 0, NULL, NULL }\n    }%3b\n    etype = g_%40type%40_register_static (\"%40EnumName%40\", values)%3b\n  }\n  return etype%3b\n}\n" --ftail "\n/* Generated data ends here */\n" ../atk/atkhyperlink.h ../atk/atkobject.h ../atk/atkrelationtype.h ../atk/atkstate.h ../atk/atktext.h ../atk/atkvalue.h ../atk/atkutil.h &gt; ../atk/atk-enum-types.c
+copy /Y "..\atk\atk-enum-types.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+cd ..
+perl win32-fixup.pl
+copy /Y "config.h.win32" "config.h"
+copy /Y "config.h" "$(GenericIncludeFolder)\atk-2.0"
+copy /Y "atk\atkversion.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+python $(GlibBuildRootFolder)/gobject/glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --header &gt; "atk\atkmarshal.h"
+python $(GlibBuildRootFolder)/gobject/glib-genmarshal --prefix=atk_marshal atk/atkmarshal.list --body &gt; "atk\atkmarshal.c"
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>/FI$(TargetSxsFolder)\targetsxs.h %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\lib\glib-2.0\include;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_SECURE_SCL=0;ATK_COMPILATION;ATK_LOCALEDIR="Not set (placeholder)";WIN32;_WIN64;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_WINDLL;DLL_EXPORT;G_OS_WIN32;HAVE_CONFIG_H;ENABLE_NLS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\Release\libatk_1_0/libatk_1_0.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+      <ForcedIncludeFiles>$(TargetSxsFolder)\targetsxs.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command />
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>intl64RDC$(LibraryExt);$(DllPrefix)glib64$(DllSuffix)RDC$(LibraryExt);$(DllPrefix)gobject64$(DllSuffix)RDC$(LibraryExt);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\win64;..\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\libatk_1_0/libatk_1_0.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>mkdir "$(GenericLibraryFolder)\pkgconfig" 2&gt; NUL
+mkdir "$(GenericIncludeFolder)\atk-2.0\atk" 2&gt; NUL
+copy /Y "..\atk\*.h" "$(GenericIncludeFolder)\atk-2.0\atk"
+copy /Y "$(TargetPath)" "$(Release64TestSuiteFolder)\$(TargetName)$(TargetExt)"
+copy /Y "$(OutDir)$(TargetName)$(LibraryExt)" "$(GenericWin64LibraryFolder)\$(TargetName)$(LibraryExt)"
+copy /Y "..\atk.pc" "$(GenericLibraryFolder)\pkgconfig"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\atk\atk-enum-types.c" />
+    <ClCompile Include="..\atk\atkaction.c" />
+    <ClCompile Include="..\atk\atkcomponent.c" />
+    <ClCompile Include="..\atk\atkdocument.c" />
+    <ClCompile Include="..\atk\atkeditabletext.c" />
+    <ClCompile Include="..\atk\atkgobjectaccessible.c" />
+    <ClCompile Include="..\atk\atkhyperlink.c" />
+    <ClCompile Include="..\atk\atkhyperlinkimpl.c" />
+    <ClCompile Include="..\atk\atkhypertext.c" />
+    <ClCompile Include="..\atk\atkimage.c" />
+    <ClCompile Include="..\atk\atkmarshal.c" />
+    <ClCompile Include="..\atk\atkmisc.c" />
+    <ClCompile Include="..\atk\atknoopobject.c" />
+    <ClCompile Include="..\atk\atknoopobjectfactory.c" />
+    <ClCompile Include="..\atk\atkobject.c" />
+    <ClCompile Include="..\atk\atkobjectfactory.c" />
+    <ClCompile Include="..\atk\atkplug.c" />
+    <ClCompile Include="..\atk\atkprivate.c" />
+    <ClCompile Include="..\atk\atkrange.c" />
+    <ClCompile Include="..\atk\atkregistry.c" />
+    <ClCompile Include="..\atk\atkrelation.c" />
+    <ClCompile Include="..\atk\atkrelationset.c" />
+    <ClCompile Include="..\atk\atkselection.c" />
+    <ClCompile Include="..\atk\atksocket.c" />
+    <ClCompile Include="..\atk\atkstate.c" />
+    <ClCompile Include="..\atk\atkstateset.c" />
+    <ClCompile Include="..\atk\atkstreamablecontent.c" />
+    <ClCompile Include="..\atk\atktable.c" />
+    <ClCompile Include="..\atk\atktablecell.c" />
+    <ClCompile Include="..\atk\atktext.c" />
+    <ClCompile Include="..\atk\atkutil.c" />
+    <ClCompile Include="..\atk\atkvalue.c" />
+    <ClCompile Include="..\atk\atkversion.c" />
+    <ClCompile Include="..\atk\atkwindow.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\atk\atk-enum-types.h" />
+    <ClInclude Include="..\atk\atk.h" />
+    <ClInclude Include="..\atk\atkaction.h" />
+    <ClInclude Include="..\atk\atkcomponent.h" />
+    <ClInclude Include="..\atk\atkdocument.h" />
+    <ClInclude Include="..\atk\atkeditabletext.h" />
+    <ClInclude Include="..\atk\atkgobjectaccessible.h" />
+    <ClInclude Include="..\atk\atkhyperlink.h" />
+    <ClInclude Include="..\atk\atkhyperlinkimpl.h" />
+    <ClInclude Include="..\atk\atkhypertext.h" />
+    <ClInclude Include="..\atk\atkimage.h" />
+    <ClInclude Include="..\atk\atkintl.h" />
+    <ClInclude Include="..\atk\atkmisc.h" />
+    <ClInclude Include="..\atk\atknoopobject.h" />
+    <ClInclude Include="..\atk\atknoopobjectfactory.h" />
+    <ClInclude Include="..\atk\atkobject.h" />
+    <ClInclude Include="..\atk\atkobjectfactory.h" />
+    <ClInclude Include="..\atk\atkplug.h" />
+    <ClInclude Include="..\atk\atkprivate.h" />
+    <ClInclude Include="..\atk\atkrange.h" />
+    <ClInclude Include="..\atk\atkregistry.h" />
+    <ClInclude Include="..\atk\atkrelation.h" />
+    <ClInclude Include="..\atk\atkrelationset.h" />
+    <ClInclude Include="..\atk\atkrelationtype.h" />
+    <ClInclude Include="..\atk\atkselection.h" />
+    <ClInclude Include="..\atk\atksocket.h" />
+    <ClInclude Include="..\atk\atkstate.h" />
+    <ClInclude Include="..\atk\atkstateset.h" />
+    <ClInclude Include="..\atk\atkstreamablecontent.h" />
+    <ClInclude Include="..\atk\atktable.h" />
+    <ClInclude Include="..\atk\atktablecell.h" />
+    <ClInclude Include="..\atk\atktext.h" />
+    <ClInclude Include="..\atk\atkutil.h" />
+    <ClInclude Include="..\atk\atkvalue.h" />
+    <ClInclude Include="..\atk\atkversion.h" />
+    <ClInclude Include="..\atk\atkwindow.h" />
+    <ClInclude Include="..\config.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\atk\atk.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\atk\resource" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
