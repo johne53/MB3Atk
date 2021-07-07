@@ -94,7 +94,6 @@ copy /Y "..\atk\atkversion.h" "$(GenericIncludeFolder)\atk-2.0\atk"
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\lib\glib-2.0\include;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ATK_COMPILATION;ATK_LOCALEDIR="Not set (placeholder)";WIN32;_WIN64;DEBUG;_DEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_WINDLL;DLL_EXPORT;G_OS_WIN32;HAVE_CONFIG_H;ENABLE_NLS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StructMemberAlignment>Default</StructMemberAlignment>
